@@ -1,0 +1,34 @@
+{
+  "name": "react-native-car-connect",
+  "title": "React Native Car Connect",
+  "version": "1.0.8",
+  "description": "Detect when your car connects and disconnects from media channels",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeffreymendez1993/react-native-car-connect.git",
+    "baseUrl": "https://github.com/jeffreymendez1993/react-native-car-connect"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": {
+    "name": "Jeffrey Mendez",
+    "email": "jeffmendez19@email.com"
+  },
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "readmeFilename": "README.md",
+  "peerDependencies": {
+    "react": ">=16",
+    "react-native": ">=0.60"
+  },
+  "devDependencies": {
+    "jest": "23.5.0",
+    "react": "^16.8.0",
+    "react-native": "0.60"
+  }
+}
