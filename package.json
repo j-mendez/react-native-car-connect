@@ -1,7 +1,7 @@
 {
   "name": "react-native-car-connect",
   "title": "React Native Car Connect",
-  "version": "1.0.8",
+  "version": "1.1.4",
   "description": "Detect when your car connects and disconnects from media channels",
   "main": "index.js",
   "scripts": {

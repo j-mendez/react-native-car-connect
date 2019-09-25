@@ -46,7 +46,7 @@ Currently only working for iOS. Android will be available soon.
 ```javascript
 import { useEffect } from "react";
 import CarConnect from "react-native-car-connect";
-import { Alert, NativeEventEmitter } from "react-native";
+import { NativeEventEmitter } from "react-native";
 
 const CarEvents = new NativeEventEmitter(CarConnect);
 
@@ -54,13 +54,13 @@ function ConnectFunctionalComponent() {
   useEffect(
     () => {
       CarEvents.addListener("onConnect", res => {
-        Alert.alert("Car connected state = ", res);
+        alert("Car connected state = ", res);
       });
       CarEvents.addListener("onDisconnect", res => {
-        Alert.alert("Car disconnected state = ", res);
+        alert("Car disconnected state = ", res);
       });
       CarConnect.start();
-      () => {
+      return () => {
         CarConnect.stop();
       };
     },
@@ -71,6 +71,11 @@ function ConnectFunctionalComponent() {
   return null;
 }
 
-// can also get value of connected status like this only after CarConnect.start is called
+// check if connected
 console.log(CarConnect.connected);
+
+// example usage with functional component
+function App() {
+  return <ConnectFunctionalComponent />;
+}
 ```
