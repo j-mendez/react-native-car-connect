@@ -11,8 +11,8 @@
 #import "React/RCTEventEmitter.h"
 
 @interface RCT_EXTERN_MODULE(CarConnect, RCTEventEmitter)
-  RCT_EXTERN_METHOD(start)
-  RCT_EXTERN_METHOD(stop)
+  RCT_EXTERN_METHOD(start:(BOOL *)background)
+  RCT_EXTERN_METHOD(stop:(BOOL *)background)
   RCT_EXTERN_METHOD(connect)
   RCT_EXTERN_METHOD(disconnect)
 @end

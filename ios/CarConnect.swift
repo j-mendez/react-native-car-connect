@@ -12,6 +12,7 @@ import AVFoundation
 @objc(CarConnect)
 class CarConnect: RCTEventEmitter {
     private var connected = false
+    private var timer: Timer? = nil
 
     override init() {
         super.init()
@@ -19,17 +20,27 @@ class CarConnect: RCTEventEmitter {
     }
 
     @objc
-    func start(){
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(handleRouteChange),
-                                               name: AVAudioSession.routeChangeNotification,
-                                               object: AVAudioSession.sharedInstance())
+    func start(_ background: Bool = false){
+        if background {
+            timer?.invalidate()
+            timer = Timer.init(fireAt: Date(), interval: 0.5, target: self, selector: #selector(self.checkAudioChannelConnection), userInfo: nil, repeats: true)
+            RunLoop.main.add(timer!, forMode: RunLoop.Mode.common)
+        } else {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(handleRouteChange),
+                                                   name: AVAudioSession.routeChangeNotification,
+                                                   object: AVAudioSession.sharedInstance())
+        }
         print("setting timer to get status: \(connected)")
     }
 
     @objc
-    func stop() {
-        NotificationCenter.default.removeObserver(AVAudioSession.routeChangeNotification)
+    func stop(_ background: Bool = false){
+        if background && timer !== nil {
+            timer?.invalidate()
+        } else {
+            NotificationCenter.default.removeObserver(AVAudioSession.routeChangeNotification)
+        }
     }
 
     @objc
@@ -51,8 +62,6 @@ class CarConnect: RCTEventEmitter {
         if (connected && !connection) {
           disconnect()
         }
-
-        print("connection is \(connected)")
     }
 
     @objc func handleRouteChange(notification: Notification) {

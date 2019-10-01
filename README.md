@@ -59,9 +59,10 @@ function ConnectFunctionalComponent() {
       CarEvents.addListener("onDisconnect", res => {
         alert("Car disconnected state = ", res);
       });
-      CarConnect.start();
+      // pass in true to use background thread
+      CarConnect.start(true);
       return () => {
-        CarConnect.stop();
+        CarConnect.stop(true);
       };
     },
     [],
